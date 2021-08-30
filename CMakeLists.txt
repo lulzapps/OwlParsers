@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(CCCBTemplate)
+project(owlapi LANGUAGES CXX)
 
 option(OWLAPI_UNIT_TESTS "Build unit tests (default OFF)" OFF)
 option(OWLAPI_COVERAGE "Enable coverage reporting (default OFF)" OFF)
