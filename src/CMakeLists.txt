@@ -1,22 +1,17 @@
-include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
 set(SOURCE_FILES
-    MyClass.cpp
-)
-
-set (MOC_HEADERS
+    HtmlParser.cpp
 )
 
 set(HEADER_FILES
-    ${CMAKE_SOURCE_DIR}/include/owl/MyClass.h
+    ${CMAKE_SOURCE_DIR}/include/owl/HtmlParser.h
 )
 
-add_library(MyLib STATIC
+add_library(OwlLib STATIC
     ${SOURCE_FILES}
     ${HEADER_FILES}
 )
 
-target_link_libraries(MyLib
+target_link_libraries(OwlLib
     coverage_config
+    myhtml_static
 )

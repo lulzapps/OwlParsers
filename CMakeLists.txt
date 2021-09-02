@@ -30,6 +30,17 @@ if(OWLAPI_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_link_options(coverage_config INTERFACE --coverage)
 endif(OWLAPI_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 
+include_directories(${CMAKE_SOURCE_DIR}/myhtml/include)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
+# https://github.com/lexborisov/myhtml
+set(MyHTML_BUILD_STATIC ON)
+set(MyHTML_BUILD_SHARED OFF)
+set(MyHTML_INSTALL_HEADER OFF)
+add_subdirectory(myhtml)
+# set_target_properties(myhtml_static PROPERTIES IMPORTED_LOCATION myhtml/lib/myhtml_static.a)
+
 add_subdirectory(src)
 
 if (OWLAPI_UNIT_TESTS)
