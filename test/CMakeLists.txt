@@ -6,10 +6,6 @@ function(create_test testname FILES)
         ${FILES}
     )
 
-message("OWLLIB: ${OwlLib}")
-message("myhtml_static: ${myhtml_static}")
-message("CONAN_LIBS_BOOST: ${CONAN_LIBS_BOOST}")
-
     target_link_libraries(test_${testname}
         PUBLIC
             OwlLib
