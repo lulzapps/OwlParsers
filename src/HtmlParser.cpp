@@ -76,6 +76,10 @@ HtmlDocument::~HtmlDocument()
 
 bool HtmlDocument::parse(std::string_view htmlstr)
 {
+    // the myhtml library will automatically add <html>, <head> and <body> tags
+    // to the document if they are already no there. the option below disables that
+    // myhtml_tree_parse_flags_set(_tree, MyHTML_TREE_PARSE_FLAGS_WITHOUT_BUILD_TREE);
+
     return myhtml_parse(_tree, MyENCODING_UTF_8, htmlstr.data(), htmlstr.size()) == MyHTML_STATUS_OK;
 }
 
@@ -83,6 +87,28 @@ NodePtr HtmlDocument::getRoot()
 {
     myhtml_tree_node_t* doc = myhtml_tree_get_document(_tree);
     return std::make_shared<Node>(myhtml_node_child(doc), shared_from_this());
+}
+
+NodePtr HtmlDocument::getHead()
+{
+    auto body = myhtml_tree_get_node_head(_tree);
+    if (body)
+    {
+        return std::make_shared<Node>(body, shared_from_this());
+    }
+
+    return {};
+}
+
+NodePtr HtmlDocument::getBody()
+{
+    auto head = myhtml_tree_get_node_body(_tree);
+    if (head)
+    {
+        return std::make_shared<Node>(head, shared_from_this());
+    }
+
+    return {};
 }
 
 }
