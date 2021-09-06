@@ -50,6 +50,11 @@ public:
         return {};
     }
 
+    myhtml_tree_attr_t* node()
+    {
+        return _attr;
+    }
+
 private:
     myhtml_tree_attr_t*         _attr = nullptr;
     std::weak_ptr<HtmlDocument> _parent;
@@ -75,6 +80,11 @@ public:
         }
 
         return {};
+    }
+
+    myhtml_tree_node_t* node()
+    {
+        return _node;
     }
 
 private:

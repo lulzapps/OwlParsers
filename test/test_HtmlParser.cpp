@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(element_test)
 
 BOOST_AUTO_TEST_CASE(attribute_iterate_test)
 {
-    char html[] = R"xx(<div id="123" class="abc"></div>)xx";
+    char html[] = R"xx(<div id="123" class="abc" foo="bar"></div>)xx";
     auto doc = std::make_shared<owl::html::HtmlDocument>();
 
     BOOST_TEST(doc->parse(html));
@@ -66,6 +66,10 @@ BOOST_AUTO_TEST_CASE(attribute_iterate_test)
     auto attr2 = attr1->getNext();
     BOOST_TEST(attr2->getKey() == "class");
     BOOST_TEST(attr2->getValue() =="abc");
+
+    auto attr3 = attr2->getNext();
+    BOOST_TEST(attr3->getKey() == "foo");
+    BOOST_TEST(attr3->getValue() =="bar");
 }
 
 BOOST_AUTO_TEST_SUITE_END()    
